@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name         NCNU SSO Redesign
-// @name:zh-TW   NCNU SSO 重新設計
+// @name         NCNU SSO 重新設計
+// @name:en      NCNU SSO Redesign
 // @namespace    https://github.com/york9675
-// @version      1.0
-// @description  New UI for NCNU SSO portal with a light pink glassmorphism design, improved typography, and fixed English translations, plus other improvements.
-// @description:zh-TW  NCNU SSO 全新界面設計，採用淺粉色玻璃風格，改進排版，修正英文翻譯等多項優化。
+// @version      1.0.2
+// @description  NCNU SSO 全新界面設計，採用淺粉色玻璃風格，改進排版，修正英文翻譯等多項優化。
+// @description:en  New UI for NCNU SSO portal with a light pink glassmorphism design, improved typography, and fixed English translations, plus other improvements.
 // @author       york9675
 // @match        *://sso.ncnu.edu.tw/*
 // @icon         https://service.ncnu.edu.tw/ncnuweb/units/share/全校共用/web_material/images/logo/70_70.gif
@@ -343,43 +343,43 @@
 
             '登入': '🔑 登入',
             'Login': '🔑 Login',
-            
+
             '送出': '✅ 送出',
             'Submit': '✅ Submit',
 
             '修改': '✏️ 修改',
             'Change': '✏️ Change',
-            
+
             'ZH-TW': '🇹🇼 ZH-TW',
             '繁體中文': '🇹🇼 繁體中文',
-            
+
             'EN': '🌐 EN',
             '英文': '🌐 英文',
-            
+
             '個人資料': '👤 個人資料',
             'Profile': '👤 Profile',
-            
+
             '修改密碼': '🔒 修改密碼',
             'Change password': '🔒 Change password',
-            
+
             '新世代校務系統': '🎓 新世代校務系統',
             'School Information System': '🎓 School Information System',
-            
+
             'Webmail電子郵件系統': '✉️ Webmail電子郵件系統',
             'Webmail Email System': '✉️ Webmail Email System',
-            
+
             '圖書館資源探索服務': '📚 圖書館資源探索服務',
             'Library Resource Discovery Service': '📚 Library Resource Discovery Service',
-            
+
             '人事差勤管理系統': '📋 人事差勤管理系統',
             'Personnel and Attendance Management System': '📋 Personnel and Attendance Management System',
-            
+
             '公文及檔案整合系統': '📁 公文及檔案整合系統',
             'Official document and file integration system': '📁 Official document and file integration system',
-            
+
             'SSL-VPN 連線服務': '🔐 SSL-VPN 連線服務',
             'SSL-VPN Connection Service': '🔐 SSL-VPN Connection Service',
-            
+
             '新版Moodle課程資訊網': '📖 新版Moodle課程資訊網',
             'New Moodle Course Information Network': '📖 New Moodle Course Information Network'
         };
@@ -489,7 +489,7 @@
         const hour = new Date().getHours();
 
         let greeting, subtext;
-        
+
         if (isEnglish) {
             if (hour >= 5 && hour < 12) {
                 greeting = '☀️ Good Morning';
@@ -513,7 +513,7 @@
         const h1 = document.querySelector('h1');
         if (h1 && (h1.textContent.trim() === '首頁' || h1.textContent.trim() === 'Home') && userName) {
             h1.className = 'sso-greeting';
-            
+
             if (isEnglish) {
                 h1.textContent = `${greeting}, ${userName}!`;
             } else {

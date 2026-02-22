@@ -2,7 +2,7 @@
 // @name         NCNU SSO 重新設計
 // @name:en      NCNU SSO Redesign
 // @namespace    https://github.com/york9675
-// @version      1.0.2
+// @version      1.1
 // @description  NCNU SSO 全新界面設計，採用淺粉色玻璃風格，改進排版，修正英文翻譯等多項優化。
 // @description:en  New UI for NCNU SSO portal with a light pink glassmorphism design, improved typography, and fixed English translations, plus other improvements.
 // @author       york9675
@@ -14,6 +14,8 @@
 // @grant        none
 // @run-at       document-start
 // ==/UserScript==
+
+// jshint esversion: 11
 
 (function () {
     'use strict';
@@ -267,12 +269,7 @@
         'Webmail電子郵件系統': 'Webmail Email System',
         '圖書館資源探索服務': 'Library Resource Discovery Service',
         'SSL-VPN 連線服務': 'SSL-VPN Connection Service',
-        '新版Moodle課程資訊網': 'New Moodle Course Information Network',
-        '使用者資料': 'User Profile',
-        '使用者帳號': 'Account',
-        '名稱': 'Name',
-        '電子信箱': 'Email',
-        '備援信箱': 'Backup Email'
+        '新版Moodle課程資訊網': 'New Moodle Course Information Network'
     };
 
     // Translations Fix
@@ -444,13 +441,13 @@
                     // Get label text without the button text
                     let labelText = '';
                     let changeLink = null;
-                    cells[0].childNodes.forEach(node => {
+                    for (const node of cells[0].childNodes) {
                         if (node.nodeType === 3) {
                             labelText += node.textContent.trim();
                         } else if (node.tagName === 'A') {
                             changeLink = node.cloneNode(true);
                         }
-                    });
+                    }
                     // Translate label if in English
                     if (isEnglish && translations[labelText]) {
                         labelText = translations[labelText];
@@ -532,9 +529,9 @@
             footer.className = 'sso-redesign-footer';
 
             if (isEnglish) {
-                footer.innerHTML = `✨ UI Redesigned by <a href="https://github.com/york9675" target="_blank">york9675</a><br>This redesign is personal and NOT affiliated with NCNU`
+                footer.innerHTML = `✨ UI Redesigned by <a href="https://github.com/york9675" target="_blank">york9675</a><br>This redesign is personal and NOT affiliated with NCNU`;
             } else {
-                footer.innerHTML = `✨ 介面重新設計：<a href="https://github.com/york9675" target="_blank">york9675</a><br>此重新設計為個人作品，且與暨南大學官方無任何關聯`
+                footer.innerHTML = `✨ 介面重新設計：<a href="https://github.com/york9675" target="_blank">york9675</a><br>此重新設計為個人作品，且與暨南大學官方無任何關聯`;
             }
 
             main.appendChild(footer);
@@ -565,9 +562,9 @@
         setupTheme();
 
         // Compute language mode once per load
-        const isEnglish = document.documentElement.lang === 'en'
-            || document.querySelector('a.nav-link[href*="logout"]')?.textContent.trim() === 'Logout'
-            || document.querySelector('h1')?.textContent.trim() === 'Home';
+        const isEnglish = document.documentElement.lang === 'en' ||
+            document.querySelector('a.nav-link[href*="logout"]')?.textContent.trim() === 'Logout' ||
+            document.querySelector('h1')?.textContent.trim() === 'Home';
 
         fixTranslations(isEnglish);
         enhanceUI(isEnglish);

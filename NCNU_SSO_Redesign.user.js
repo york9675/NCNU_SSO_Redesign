@@ -2,7 +2,7 @@
 // @name         NCNU SSO 重新設計
 // @name:en      NCNU SSO Redesign
 // @namespace    https://github.com/york9675
-// @version      1.1
+// @version      1.2
 // @description  NCNU SSO 全新界面設計，採用淺粉色玻璃風格，改進排版，修正英文翻譯等多項優化。
 // @description:en  New UI for NCNU SSO portal with a light pink glassmorphism design, improved typography, and fixed English translations, plus other improvements.
 // @author       york9675
@@ -19,6 +19,8 @@
 
 (function () {
     'use strict';
+
+    const SCRIPT_VERSION = '1.2';
 
     // Reusable glass mixin value
     const GLASS = `background: rgba(255,255,255,0.4) !important; backdrop-filter: blur(24px) saturate(180%) !important; -webkit-backdrop-filter: blur(24px) saturate(180%) !important; border: 1px solid rgba(255,255,255,0.8) !important; border-radius: 16px !important; box-shadow: 0 10px 40px rgba(0,0,0,0.08) !important;`;
@@ -185,7 +187,9 @@
             padding: 0.4rem 1.2rem !important; border-radius: 20px !important;
             font-size: 0.85rem !important; font-weight: 600 !important;
             box-shadow: 0 3px 10px rgba(255, 78, 189, 0.25) !important;
+            white-space: nowrap !important;
         }
+        table td a span { color: #fff !important; }
         table td a:hover {
             transform: translateY(-1px) !important;
             box-shadow: 0 5px 15px rgba(255, 78, 189, 0.35) !important; color: #fff !important;
@@ -244,6 +248,12 @@
         .sso-redesign-footer { text-align: center; padding: 1.5rem 1rem; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.2px; }
         .sso-greeting { font-size: 1.8rem !important; font-weight: 700 !important; color: var(--text-main) !important; margin-bottom: 0.5rem !important; }
         .sso-greeting-sub { font-size: 0.95rem; color: var(--text-muted); font-weight: 400; margin-bottom: 1.5rem; }
+
+        /* Mobile Responsive */
+        @media (max-width: 576px) {
+            .loginDiv .img-fluid { width: 100% !important; max-width: 100% !important; }
+            table td a .btn-label { display: none !important; }
+        }
     `;
 
     // Inject Theme & Meta
@@ -335,8 +345,8 @@
 
         // Add icons economically 
         const iconMappings = {
-            '訪問網址': '↗ 訪問網址',
-            'Visit URL': '↗ Visit URL',
+            '訪問網址': '↗ <span class="btn-label"> 訪問網址</span>',
+            'Visit URL': '↗ <span class="btn-label"> Visit URL</span>',
 
             '登入': '🔑 登入',
             'Login': '🔑 Login',
@@ -529,9 +539,9 @@
             footer.className = 'sso-redesign-footer';
 
             if (isEnglish) {
-                footer.innerHTML = `✨ UI Redesigned by <a href="https://github.com/york9675" target="_blank">york9675</a><br>This redesign is personal and NOT affiliated with NCNU`;
+                footer.innerHTML = `✨ UI Redesigned by <a href="https://github.com/york9675" target="_blank">york9675</a> · <a href="https://github.com/york9675/NCNU_SSO_Redesign/releases/tag/v${SCRIPT_VERSION}" target="_blank">v${SCRIPT_VERSION}</a><br>This redesign is personal and NOT affiliated with NCNU`;
             } else {
-                footer.innerHTML = `✨ 介面重新設計：<a href="https://github.com/york9675" target="_blank">york9675</a><br>此重新設計為個人作品，且與暨南大學官方無任何關聯`;
+                footer.innerHTML = `✨ 介面重新設計：<a href="https://github.com/york9675" target="_blank">york9675</a> · <a href="https://github.com/york9675/NCNU_SSO_Redesign/releases/tag/v${SCRIPT_VERSION}" target="_blank">v${SCRIPT_VERSION}</a><br>此重新設計為個人作品，且與暨南大學官方無任何關聯`;
             }
 
             main.appendChild(footer);
